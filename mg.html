@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Game</title>
+    <script src="./mg.js" defer></script>
+    <link rel="stylesheet" href="mg.css">
+</head>
+<body>
+    <div class="login" id="loginform">
+        <h2>Memory Game Login</h2>
+        <form action="" >
+            <div class="info">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" placeholder="Shkruani username tuaj" required>
+            </div>
+            <div class="info">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="Shkruani password tuaj" required>
+            </div>
+            <button type="submit" onclick="loginUser()">Login</button>
+        </form>
+        <div id="error-message">Gabim ne username dhe password</div>
+    </div>
+
+    <div class ="mrena"  id="sectionelojes">
+        <h2>Miresevini ne loje</h2>
+        <ul class="kardat">
+            <li class="kardi">
+                <div class="frontview">
+                    <span class="ikonat">?</span>
+                </div>
+                <div class="backview">
+                    <img src="mollaa.PNG" alt="">
+                </div>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>
