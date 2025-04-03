@@ -8,9 +8,12 @@
     <link rel="stylesheet" href="mg.css">
 </head>
 <body>
+   
+
+   
     <div class="login" id="loginform">
         <h2>Memory Game Login</h2>
-        <form action="" >
+        <form action="" id="loginfform">
             <div class="info">
                 <label for="username">Username:</label>
                 <input type="text" id="username" name="username" placeholder="Shkruani username tuaj" required>
@@ -19,23 +22,54 @@
                 <label for="password">Password:</label>
                 <input type="password" id="password" name="password" placeholder="Shkruani password tuaj" required>
             </div>
-            <button type="submit" onclick="loginUser()">Login</button>
+            <button type="button" onclick="loginUser()">Login</button>
         </form>
         <div id="error-message">Gabim ne username dhe password</div>
     </div>
 
-    <div class ="mrena"  id="sectionelojes">
-        <h2>Miresevini ne loje</h2>
-        <ul class="kardat">
-            <li class="kardi">
-                <div class="frontview">
-                    <span class="ikonat">?</span>
-                </div>
-                <div class="backview">
-                    <img src="mollaa.PNG" alt="">
-                </div>
-            </li>
-        </ul>
+    
+    <div id="mrena" >
+        <h1>Memory Game</h1>
+        <div id="loja">
+            <div class="kardat">
+                <img src="./dredheza.PNG" alt="card" style="display: none;" />
+            </div>
+            <div class="kardat">
+                <img src="./blueberrys.PNG" alt="card" style="display: none;" />
+            </div>
+            <div class="kardat">
+                <img src="./limon.PNG" alt="card" style="display: none;" />
+            </div>
+            <div class="kardat">
+                <img src="./mollaa.PNG" alt="card" style="display: none;" />
+            </div>
+            <div class="kardat">
+                <img src="./portokall.PNG" alt="card" style="display: none;" />
+            </div>
+            <div class="kardat">
+                <img src="./qershi.PNG" alt="card" style="display: none;" />
+            </div>
+        
+            <div class="kardat">
+                <img src="./dredheza.PNG" alt="card" style="display: none;" />
+            </div>
+            <div class="kardat">
+                <img src="./blueberrys.PNG" alt="card" style="display: none;" />
+            </div>
+            <div class="kardat">
+                <img src="./limon.PNG" alt="card" style="display: none;" />
+            </div>
+            <div class="kardat">
+                <img src="./mollaa.PNG" alt="card" style="display: none;" />
+            </div>
+            <div class="kardat">
+                <img src="./portokall.PNG" alt="card" style="display: none;" />
+            </div>
+            <div class="kardat">
+                <img src="./qershi.PNG" alt="card" style="display: none;" />
+            </div>
+        </div>
     </div>
+
 </body>
 </html>
