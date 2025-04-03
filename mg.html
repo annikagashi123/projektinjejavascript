@@ -1,75 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sq">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Memory Game</title>
-    <script src="./mg.js" defer></script>
-    <link rel="stylesheet" href="mg.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Loginform</title>
+<link rel="stylesheet" href="mg.css">
 </head>
 <body>
-   
+<div class="mrena">
+<h2>Login</h2>
+<input type="text" id="username" placeholder="Shkruani username tuaj">
+<input type="password" id="password" placeholder="Shkruani password tuaj">
+<button onclick="login()">Login</button>
+<p id="error-message"></p>
+</div>
 
-   
-    <div class="login" id="loginform">
-        <h2>Memory Game Login</h2>
-        <form action="" id="loginfform">
-            <div class="info">
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username" placeholder="Shkruani username tuaj" required>
-            </div>
-            <div class="info">
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" placeholder="Shkruani password tuaj" required>
-            </div>
-            <button type="button" onclick="loginUser()">Login</button>
-        </form>
-        <div id="error-message">Gabim ne username dhe password</div>
+<div class="mrena2">
+    <div class="fill">
+        <button id="darkmode">Dark Mode</button>
+        <span id="Levizje">Levizje: 0</span>
+        <button id="reset">⟳</button>
     </div>
+    <div class="fund"></div>
+</div>
 
-    
-    <div id="mrena" >
-        <h1>Memory Game</h1>
-        <div id="loja">
-            <div class="kardat">
-                <img src="./dredheza.PNG" alt="card" style="display: none;" />
-            </div>
-            <div class="kardat">
-                <img src="./blueberrys.PNG" alt="card" style="display: none;" />
-            </div>
-            <div class="kardat">
-                <img src="./limon.PNG" alt="card" style="display: none;" />
-            </div>
-            <div class="kardat">
-                <img src="./mollaa.PNG" alt="card" style="display: none;" />
-            </div>
-            <div class="kardat">
-                <img src="./portokall.PNG" alt="card" style="display: none;" />
-            </div>
-            <div class="kardat">
-                <img src="./qershi.PNG" alt="card" style="display: none;" />
-            </div>
-        
-            <div class="kardat">
-                <img src="./dredheza.PNG" alt="card" style="display: none;" />
-            </div>
-            <div class="kardat">
-                <img src="./blueberrys.PNG" alt="card" style="display: none;" />
-            </div>
-            <div class="kardat">
-                <img src="./limon.PNG" alt="card" style="display: none;" />
-            </div>
-            <div class="kardat">
-                <img src="./mollaa.PNG" alt="card" style="display: none;" />
-            </div>
-            <div class="kardat">
-                <img src="./portokall.PNG" alt="card" style="display: none;" />
-            </div>
-            <div class="kardat">
-                <img src="./qershi.PNG" alt="card" style="display: none;" />
-            </div>
-        </div>
-    </div>
 
+
+<script src="mg.js"></script>
 </body>
 </html>

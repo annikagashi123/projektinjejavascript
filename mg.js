@@ -1,88 +1,97 @@
-        const correctUsername = "user123";
-        const correctPassword = "pass123";
-        function loginUser() {
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            const errorMessage = document.getElementById('error-message');
-            
-            if (username === correctUsername && password === correctPassword) {
-                document.getElementById('loginform').style.display = 'none';
-                document.getElementById('mrena').style.display = 'block';
-                perzijimazhet(); // Shuffle the cards on login success
-            } else {
-                errorMessage.style.display = 'block';
-            }
-        }
-       
-       
-       
-       
-        let flippedCards = [];
-        let matchedCards = 0;
-        let canFlip = true;
+function login() {
+    let username = document.getElementById("username").value;
+    let password = document.getElementById("password").value;
+    let errorMessage = document.getElementById("error-message");
+    
+    if (username === "anika" && password === "anika") {
+        document.querySelector("mrena").style.display = "none";
+        document.querySelector("mrena2").style.display = "block";
+        createBoard();
+    } else {
+        errorMessage.textContent = "Përdorues ose fjalëkalim i gabuar!";
+    }
+}
 
-        const cards = document.querySelectorAll('.kardat');
 
-        // Shuffle function
-        function perzij(kard) {
-            for (let i = kard.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [kard[i], kard[j]] = [kard[j], kard[i]]; 
-            }
-        }
+  const grid = document.querySelector(".fund");
+const movesDisplay = document.getElementById("levizje");
+const resetBtn = document.getElementById("reset");
+const darkModeToggle = document.getElementById("darkmode");
+let moves = 0;
+let firstCard = null;
+let secondCard = null;
+let lockBoard = false;
 
-        // Shuffle the cards on login success
-        function perzijimazhet() {
-            perzij(Array.from(cards));  
-        }
+const images = [
+    "blueberrys.PNG", "dredheza.PNG", "limon.PNG", "mollaa.PNG",
+    "portokall.PNG", "qershi.PNG", "blueberrys.PNG", "dredheza.PNG", "limon.PNG", "mollaa.PNG",
+    "portokall.PNG", "qershi.PNG"
+];
 
-        // Add event listener for cards
-        cards.forEach(kardat => {
-            kardat.addEventListener('click', kardatKthyme);
-        });
+images.sort(() => 0.5 - Math.random());
 
-        // Flip card logic
-        function kardatKthyme() {
-            if (!canFlip || this.classList.contains('flipped') || flippedCards.length === 2) {
-                return;
-            }
+function createBoard() {
+    images.forEach((imgSrc, index) => {
+        const card = document.createElement("div");
+        card.classList.add("card");
+        card.dataset.image = imgSrc;
 
-            const img = this.querySelector('img');
-            img.style.display = 'block';  
-            this.classList.add('flipped');  
-            flippedCards.push(this);
+        const img = document.createElement("img");
+        img.src = imgSrc;
+        card.appendChild(img);
 
-            if (flippedCards.length === 2) {
-                canFlip = false; 
-                checkForMatch();  
-            }
-        }
+        card.addEventListener("click", flipCard);
+        grid.appendChild(card);
+    });
+}
 
-        // Check if two flipped cards match
-        function checkForMatch() {
-            const [card1, card2] = flippedCards;
-            const img1 = card1.querySelector('img').src;
-            const img2 = card2.querySelector('img').src;
+function flipCard() {
+    if (lockBoard || this === firstCard) return;
+    this.querySelector("img").style.display = "block";
+    
+    if (!firstCard) {
+        firstCard = this;
+        return;
+    }
+    secondCard = this;
+    lockBoard = true;
+    
+    checkForMatch();
+}
 
-            if (img1 === img2) {
-                card1.classList.add('matched');
-                card2.classList.add('matched');
-                matchedCards++;
+function checkForMatch() {
+    moves++;
+    movesDisplay.textContent = `Moves: ${moves}`;
 
-                if (matchedCards === cards.length / 2) {
-                    setTimeout(() => alert("Përshëndetje! Keni përfunduar lojën!"), 500);
-                }
-            } else {
-                setTimeout(() => {
-                    card1.classList.remove('flipped');
-                    card2.classList.remove('flipped');
-                    card1.querySelector('img').style.display = 'none';
-                    card2.querySelector('img').style.display = 'none';
-                    flippedCards = [];
-                    canFlip = true;
-                }, 1000); // Hide the cards after 1 second if they don't match
-            }
-        }
+    if (firstCard.dataset.image === secondCard.dataset.image) {
+        firstCard.removeEventListener("click", flipCard);
+        secondCard.removeEventListener("click", flipCard);
+        resetBoard();
+    } else {
+        setTimeout(() => {
+            firstCard.querySelector("img").style.display = "none";
+            secondCard.querySelector("img").style.display = "none";
+            resetBoard();
+        }, 1000);
+    }
+}
 
-        // Login function
-        
+function resetBoard() {
+    firstCard = null;
+    secondCard = null;
+    lockBoard = false;
+}
+
+resetBtn.addEventListener("click", () => {
+    grid.innerHTML = "";
+    moves = 0;
+    movesDisplay.textContent = "Moves: 0";
+    images.sort(() => 0.5 - Math.random());
+    createBoard();
+});
+
+darkModeToggle.addEventListener("click", () => {
+    document.body.classList.toggle("dark");
+});
+
+createBoard();
