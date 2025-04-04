@@ -1,97 +1,98 @@
+let kartatZgjedhura = [];
+let idKartaveZgjedhura = [];
+let kartatEBarazuara = [];
+let levizje = 0;
+
+
 function login() {
-    let username = document.getElementById("username").value;
-    let password = document.getElementById("password").value;
-    let errorMessage = document.getElementById("error-message");
-    
-    if (username === "anika" && password === "anika") {
-        document.querySelector("mrena").style.display = "none";
-        document.querySelector("mrena2").style.display = "block";
-        createBoard();
+    let emriPërdoruesit = document.getElementById("username").value;
+    let fjalëkalimi = document.getElementById("password").value;
+    let mesazhGabimi = document.getElementById("error-message");
+
+    if (emriPërdoruesit === "anika" && fjalëkalimi === "anika") {
+        document.querySelector(".mrena").style.display = "none";
+        document.querySelector(".mrena2").style.display = "block";  
+        krijoBordin(); 
     } else {
-        errorMessage.textContent = "Përdorues ose fjalëkalim i gabuar!";
+        mesazhGabimi.textContent = "Username ose Password i gabuar!";  
+        mesazhGabimi.style.display = "block";
     }
 }
 
-
-  const grid = document.querySelector(".fund");
-const movesDisplay = document.getElementById("levizje");
-const resetBtn = document.getElementById("reset");
-const darkModeToggle = document.getElementById("darkmode");
-let moves = 0;
-let firstCard = null;
-let secondCard = null;
-let lockBoard = false;
-
-const images = [
+document.addEventListener("DOMContentLoaded", () => {
+    document.querySelector(".mrena2").style.display = "none";  
+}); 
+const kartatArray = [
     "blueberrys.PNG", "dredheza.PNG", "limon.PNG", "mollaa.PNG",
-    "portokall.PNG", "qershi.PNG", "blueberrys.PNG", "dredheza.PNG", "limon.PNG", "mollaa.PNG",
-    "portokall.PNG", "qershi.PNG"
+    "portokall.PNG",  "blueberrys.PNG", "dredheza.PNG", "limon.PNG", "mollaa.PNG",
+    "portokall.PNG"
 ];
 
-images.sort(() => 0.5 - Math.random());
 
-function createBoard() {
-    images.forEach((imgSrc, index) => {
-        const card = document.createElement("div");
-        card.classList.add("card");
-        card.dataset.image = imgSrc;
+document.getElementById("reset").addEventListener("click", krijoBordin); 
 
-        const img = document.createElement("img");
-        img.src = imgSrc;
-        card.appendChild(img);
+function krijoBordin() {
+    const bordi = document.querySelector(".fund");
+    bordi.innerHTML = "";  
 
-        card.addEventListener("click", flipCard);
-        grid.appendChild(card);
+    levizje = 0;  
+    document.getElementById("Levizje").textContent = "0 Levizje";  
+
+    const kartatEShuffle = kartatArray.sort(() => 0.5 - Math.random());  
+
+    kartatEShuffle.forEach((kartë, indeks) => {
+        const kartëElement = document.createElement("div");
+        kartëElement.classList.add("kard");
+        kartëElement.dataset.id = indeks;
+        kartëElement.addEventListener("click", ktheKartën);
+
+        
+        const imgElement = document.createElement("img");
+        imgElement.src = "imazhwt/" + kartë;
+        imgElement.alt = kartë;
+        imgElement.style.display = "none"; 
+        kartëElement.appendChild(imgElement);
+
+        bordi.appendChild(kartëElement);
     });
 }
 
-function flipCard() {
-    if (lockBoard || this === firstCard) return;
-    this.querySelector("img").style.display = "block";
+function ktheKartën() {
+    let kartaId = this.dataset.id;
+
     
-    if (!firstCard) {
-        firstCard = this;
-        return;
+    if (idKartaveZgjedhura.includes(kartaId) || kartatEBarazuara.includes(kartaId)) return;
+
+    this.classList.add("flipped");  
+
+    const imgElement = this.querySelector("img");
+    imgElement.style.display = "block";  
+
+    kartatZgjedhura.push(kartatArray[kartaId]);
+    idKartaveZgjedhura.push(kartaId);
+
+    if (kartatZgjedhura.length === 2) {
+        setTimeout(kontrolloBarazimin, 500);  
+        levizje++;
+        document.getElementById("Levizje").textContent = levizje + " Levizje"; 
     }
-    secondCard = this;
-    lockBoard = true;
-    
-    checkForMatch();
 }
 
-function checkForMatch() {
-    moves++;
-    movesDisplay.textContent = `Moves: ${moves}`;
+function kontrolloBarazimin() {
+    const kartat = document.querySelectorAll(".kard");
 
-    if (firstCard.dataset.image === secondCard.dataset.image) {
-        firstCard.removeEventListener("click", flipCard);
-        secondCard.removeEventListener("click", flipCard);
-        resetBoard();
+    if (kartatZgjedhura[0] === kartatZgjedhura[1]) {
+        kartatEBarazuara.push(idKartaveZgjedhura[0]);
+        kartatEBarazuara.push(idKartaveZgjedhura[1]);
     } else {
-        setTimeout(() => {
-            firstCard.querySelector("img").style.display = "none";
-            secondCard.querySelector("img").style.display = "none";
-            resetBoard();
-        }, 1000);
+       
+        kartat[idKartaveZgjedhura[0]].classList.remove("flipped");
+        kartat[idKartaveZgjedhura[1]].classList.remove("flipped");
+
+        kartat[idKartaveZgjedhura[0]].querySelector("img").style.display = "none";
+        kartat[idKartaveZgjedhura[1]].querySelector("img").style.display = "none";
     }
+
+    kartatZgjedhura = [];
+    idKartaveZgjedhura = [];
 }
-
-function resetBoard() {
-    firstCard = null;
-    secondCard = null;
-    lockBoard = false;
-}
-
-resetBtn.addEventListener("click", () => {
-    grid.innerHTML = "";
-    moves = 0;
-    movesDisplay.textContent = "Moves: 0";
-    images.sort(() => 0.5 - Math.random());
-    createBoard();
-});
-
-darkModeToggle.addEventListener("click", () => {
-    document.body.classList.toggle("dark");
-});
-
-createBoard();

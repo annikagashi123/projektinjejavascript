@@ -1,31 +1,45 @@
- body {
+
+
+body {
     font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #1e1e2f;
+    background-color: #ccd5ae;
+    /* background-color: #1e1e2f; */
     margin: 0;
     padding: 0;
+    color: #fff;
 }
+
 
 .mrena {
     background: white;
-    width: 300px; 
-    height: auto; 
+    width: 300px;
+    height: auto;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     display: flex;
-    flex-direction: column; 
-    align-items: center; 
-    text-align: center; 
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
-
+.p1 {
+    
+    display: block;  
+    color: black; 
+    font-weight: bold;   
+    font-size: 12px; 
+    margin: 10px 0;   
+    visibility: visible; 
+    opacity: 1;      
+}
 h2 {
     font-size: 24px;
-    color: #333;
-    margin-bottom: 20px; 
+    color: #ccd5ae;
+    margin-bottom: 20px;
 }
 
 input {
@@ -36,22 +50,22 @@ input {
     border: 1px solid #ccc;
     border-radius: 5px;
     background-color: #f1f1f1;
-    text-align: center; 
+    text-align: center;
 }
 
 input:focus {
-    border-color: #007BFF; 
-    outline: none; /
+    border: color #e9edc9;;
+    outline: none;
 }
 
 button {
-    background-color: #007BFF;
+    background-color: #ccd5ae;
     color: white;
     border: none;
     padding: 12px 25px;
     cursor: pointer;
     margin: 20px 0;
-    width: 90%; 
+    width: 90%;
     border-radius: 5px;
     font-size: 16px;
 }
@@ -64,66 +78,96 @@ button:hover {
     color: red;
     margin-top: 10px;
     font-size: 14px;
-    display: none; 
+    display: none;
 }
 
 
-
-body {
-    font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #1e1e2f;
-    margin: 0;
-    transition: background 0.3s;
+.mrena2 {
+    display: none;
+    background-color: #fefae0;
+    padding: 30px;
+    border-radius: 12px;
+    width: 80%;
+    max-width: 900px;
+    margin: 30px auto;
 }
 
-.game-container {
-    text-align: center;
-}
-
-.top-bar {
+.fill {
     display: flex;
     justify-content: space-between;
-    width: 250px;
-    margin: 10px auto;
-}
-
-.grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: 10px;
-    width: 240px;
-    margin: 20px auto;
-}
-
-.card {
-    width: 50px;
-    height: 50px;
-    background: yellow;
-    display: flex;
     align-items: center;
-    justify-content: center;
+    margin-bottom: 20px;
+    padding: 14px 22px;
+    background-color: #d4a373;
+}
+
+#Levizje {
+    font-size: 20px;
+    color: #060708;
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#reset {
+    display: contents;
+    width: 100px;
+    height: auto;
+    background-color: #d4a373;
+    color: white;
+    border: none;
+    padding: 14px 22px;
+    font-size: 18px;
     cursor: pointer;
     border-radius: 5px;
-    box-shadow: 3px 3px black;
+    transition: background-color 0.3s ease;
 }
 
-.card img {
+#reset:hover {
+    background-color: #e67e22;
+}
+
+.fund {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    background: #faedcd;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+.kard {
+    width: 145px;
+    height: 160px;
+    background-color: #ecf0f1;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.kard:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.kard.flipped {
+    background-color: #ffffff;
+}
+
+.kard img {
+    width: 90%;
+    height: 90%;
+    border-radius: 10px;
+    object-fit: cover;
     display: none;
-    width: 100%;
-    height: 100%;
-    border-radius: 5px;
 }
 
-
-body.dark {
-    background: #2c2c2c;
+.kard.flipped img {
+    display: block;
 }
-
-body.dark .card {
-    background: #444;
-    box-shadow: 3px 3px white;
-}
+  
